@@ -38,6 +38,9 @@ func main() {
 	}
 	commands.Register("login", Login)
 	commands.Register("register", Register)
+	commands.Register("reset", Reset)
+	commands.Register("users", Users)
+	commands.Register("agg", Agg)
 
 	if len(os.Args) < 2 {
 		log.Fatal("No command was entered")
