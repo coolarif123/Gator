@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"os"
@@ -7,14 +7,27 @@ import (
 )
 
 const configFileName = ".gatorconfig.json"
+const configPathFromHome = "bootdev/Gator/"
 
 type Config struct {
-	db_url			 string `json:"db_url"`
-	current_user_name string `json:"current_user_name"`
+	DB_Url			 string `json:"db_url"`
+	CurrentUserName  string `json:"current_user_name"`
+}
+//REMEMBER !!!
+//WHEN DOING STRUCTS THE START MUST ALWAYS BE IN CAPITAL LETTERS
+//This is for packages
+
+func (cfg *Config) SetUser (userName string) error {
+	cfg.CurrentUserName = userName
+	err := Write(cfg)
+	if err != nil {
+        return err
+    }
+	return nil
 }
 
 func Read() (Config, error) {	
-	fullPath, err := getConfigFilePath()
+	fullPath, err := GetConfigFilePath()
 	if err != nil {
 		return Config{}, err
 	}
@@ -35,18 +48,18 @@ func Read() (Config, error) {
 	return config, nil
 }
 
-func getConfigFilePath() (string, error) {
+func GetConfigFilePath() (string, error) {
 	home, err := os.UserHomeDir()
 	if err != nil {
-		return "", nil
+		return "", err
 	}
 
 	fullFilePath := filepath.Join(home, configFileName)
 	return fullFilePath, nil
 }
 
-func Write(cfg Config) error {
-	fullPath, err := getConfigFilePath()
+func Write(cfg *Config) error {
+	fullPath, err := GetConfigFilePath()
 	if err != nil {
 		return err
 	}
