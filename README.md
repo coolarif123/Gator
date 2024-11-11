@@ -55,4 +55,8 @@ In this case the password is postgres
   
 # Usage
 To be Updated
+<<<<<<< HEAD
 update check
+=======
+update
+>>>>>>> 914181e (pulled the thing locally hopefully everything is fine)
