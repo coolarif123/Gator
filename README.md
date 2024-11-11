@@ -8,7 +8,7 @@ Installation notes:
 3) Look at how to setup the database at Setting up the database
 4) Read the Usage guide on how to enter commands into your command line.
 
-# Setting up the database:
+# Setting up the database
 1) Install postgres.  
 
 For Linux/WSL:  
@@ -53,5 +53,5 @@ ALTER USER postgres PASSWORD 'postgres';
 ```  
 In this case the password is postgres  
   
-# Usage:
+# Usage
 To be Updated
