@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"context"
+	"fmt"
 )
 
 func Login(s *State, cmd Command) error {
@@ -27,5 +28,7 @@ func Login(s *State, cmd Command) error {
 	if err != nil {
 		return err
 	}
+	fmt.Printf("Logged in as %s\n", cmd.Args[2])
+
 	return nil
 }

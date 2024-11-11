@@ -41,6 +41,12 @@ func main() {
 	commands.Register("reset", Reset)
 	commands.Register("users", Users)
 	commands.Register("agg", Agg)
+	commands.Register("addfeed", middlewareLoggedIn(AddFeed))
+	commands.Register("feeds", ListFeeds)
+	commands.Register("following", middlewareLoggedIn(Following))
+	commands.Register("follow", middlewareLoggedIn(Follow))
+	commands.Register("unfollow", middlewareLoggedIn(Unfollow))
+	commands.Register("browse", Browse)
 
 	if len(os.Args) < 2 {
 		log.Fatal("No command was entered")

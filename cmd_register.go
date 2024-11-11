@@ -6,7 +6,6 @@ import(
 	"github.com/coolarif123/Gator/internal/database"
 	"time"
 	"errors"
-	"log"
 	"fmt"
 )
 
@@ -45,7 +44,6 @@ func Register(s *State , cmd Command) error {
 		return err
 	}
 
-	fmt.Printf("User created: %+v\n", user)
-	log.Printf("User created: %+v", user)
+	fmt.Printf("User created: %s\n", user.Name)
 	return nil
 }

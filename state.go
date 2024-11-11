@@ -3,7 +3,8 @@ package main
 import(
 	"errors"
 	"github.com/coolarif123/Gator/internal/config"
-	"github.com/coolarif123/Gator/internal/database"	
+	"github.com/coolarif123/Gator/internal/database"
+	"context"	
 )
 
 type State struct {
@@ -36,3 +37,17 @@ func (c *Commands) Run(s *State, cmd Command) error {
 		return nil
 	}	
 }
+
+func middlewareLoggedIn(handler func(s *State, cmd Command, user database.User) error) func(*State, Command) error {
+	return func(s *State, cmd Command) error {
+        // Retrieve user details
+        user, err := s.Db.GetUser(context.Background(), s.Cfg.CurrentUserName)
+        if err != nil {
+            return err
+        }
+
+        // Call the original handler, passing the retrieved user
+        return handler(s, cmd, user)
+    }	
+}
+
