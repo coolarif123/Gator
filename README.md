@@ -55,3 +55,4 @@ In this case the password is postgres
   
 # Usage
 To be Updated
+update check
